@@ -1,3 +1,6 @@
 *.zip
 *.kml
+.idea
+__pycache__
+venv
 *_IMGDATA*
