@@ -7,6 +7,7 @@ import os
 # folder to unzip
 Directory = 'E:/Dropbox/Dataset/satellite/sentinel2/'
 SentinelGrids = ['35TPF', '35TPE']
+ResolutionList = ['R20m','R60m']
 
 # go over the all grids
 for gridName in SentinelGrids:
@@ -32,7 +33,7 @@ for gridName in SentinelGrids:
             os.makedirs(OutputFileDirectory)
         
         # go over all resolutions
-        for resolutions in os.listdir(InputFileDirectory):
+        for resolutions in ResolutionList:
             
             # create array
             images = {}
@@ -43,9 +44,6 @@ for gridName in SentinelGrids:
                     images[jp[23:26]] = mpimg.imread(os.path.join(InputFileDirectory, resolutions, jp))
         
             # save the image
-            savemat(os.path.join(OutputFileDirectory, resolutions + '.mat'), images, do_compression=True)
-            break
-        break
-    break
+            savemat(os.path.join(OutputFileDirectory, resolutions + '.mat'), images)
 # goodbye
 print('Done')
